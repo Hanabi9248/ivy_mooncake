@@ -98,7 +98,7 @@ jobs:
 
       - name: Verify mooncake.create_table E2E
         run: |
-          docker exec test psql -U ivorysql -d postgres <<'SQL'
+          docker exec -i test psql -v ON_ERROR_STOP=1 -U ivorysql -d postgres <<'SQL'
             CREATE TABLE t (id int PRIMARY KEY, v text);
             ALTER TABLE t REPLICA IDENTITY FULL;
             INSERT INTO t VALUES (1,'a'),(2,'b');
