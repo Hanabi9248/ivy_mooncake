@@ -100,7 +100,7 @@ SELECT extname, extversion FROM pg_extension
 "
 
 echo "==> mirror E2E test"
-$DOCKER exec -i "$CT" psql -U ivorysql -d postgres <<'SQL'
+$DOCKER exec -i "$CT" psql -v ON_ERROR_STOP=1 -U ivorysql -d postgres <<'SQL'
 CREATE TABLE t (id int PRIMARY KEY, v text);
 ALTER TABLE t REPLICA IDENTITY FULL;
 INSERT INTO t VALUES (1,'a'),(2,'b');
